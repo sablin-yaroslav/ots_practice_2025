@@ -1,6 +1,6 @@
 # Лабораторная №1: Первичная инициализация
 # Курс: Основы теории систем
-# Студент: [Ваше ФИО]
+# Студент: [Саблин Ярослав Александрович]
 
 def get_system_info():
     """
@@ -8,9 +8,9 @@ def get_system_info():
     """
     # TODO: Заполните словарь вашими реальными данными
     system_info = {
-        "student_name": "Иванов Иван Иванович",
-        "academic_group": "ИВТИИбд-11",
-        "github_link": "https://github.com/ivanov_ivan"
+        "student_name": "Саблин Ярослав Александрович",
+        "academic_group": "ИВТИИбд-12",
+        "github_link": "https://github.com/sablin-yaroslav"
     }
     return system_info
 
