@@ -6,47 +6,48 @@ def perform_switch_case(state, t, turn):
     y = round(t.position()[1] / 10)
     num_turns = 5
 
-    if state == "UP":
+    if state == "DOWN":
         t.forward(10)  # Перемещение
 
-        if turn > num_turns:
-            state = "STOP"
-            return state, turn
-        if y >= turn:
+        if round(t.position()[1]/10) <= turn + 1:
             state = "LEFT"
             t.setheading(180)  # Разворот влево
-            turn = turn + 1  # Начало нового витка
             return state, turn
         return state, turn
     if state == "RIGHT":
         t.forward(10)  # Перемещение
 
-        if x >= turn:
+        if round(t.position()[0]/10) >= num_turns - turn:
+            state = "DOWN"
+            t.setheading(270)  # Разворот вниз
+            return state, turn
+        return state, turn
+    if state == "LEFT":
+        t.forward(10)  # Перемещение
+
+        if round(t.position()[0]/10) <= turn + 1:
             state = "UP"
+            turn = turn + 1  # Начало нового витка
             t.setheading(90)  # Разворот вверх
             return state, turn
         return state, turn
     if state == "INIT":
 
         if True:
-            state = "LEFT"
-            t.setheading(180)  # Разворот влево
+            state = "UP"
+            t.setheading(90)  # Разворот вверх
+            turn = turn - 1  # Обнуление
             return state, turn
         return state, turn
-    if state == "LEFT":
+    if state == "UP":
         t.forward(10)  # Перемещение
 
-        if x <= -turn:
-            state = "DOWN"
-            t.setheading(270)  # Разворот вниз
-            return state, turn
-        return state, turn
-    if state == "DOWN":
-        t.forward(10)  # Перемещение
-
-        if y <= -turn:
+        if round(t.position()[1]/10) >= num_turns - turn and not(turn >= num_turns - 3):
             state = "RIGHT"
             t.setheading(0)  # Разворот вправо
+            return state, turn
+        if turn >= num_turns - 3:
+            state = "STOP"
             return state, turn
         return state, turn
     return state, turn
